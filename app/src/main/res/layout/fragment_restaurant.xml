@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.axuca.foodorder.model.Restaurant" />
+
+        <variable
+            name="viewModel"
+            type="com.axuca.foodorder.viewmodel.RestaurantVM" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.RestaurantFragment">
+
+            <ImageView
+                android:id="@+id/restaurant_image"
+                imageResource="@{restaurant.drawableRes}"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/burger" />
+
+            <TextView
+                android:id="@+id/restaurant_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{restaurant.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/restaurant_image"
+                tools:text="Kardeşler Pide &amp; Kebap" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/ic_baseline_star_24"
+                app:layout_constraintBottom_toBottomOf="@id/restaurant_name"
+                app:layout_constraintEnd_toStartOf="@id/star"
+                app:layout_constraintTop_toTopOf="@id/restaurant_name" />
+
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="@{String.valueOf(restaurant.star)}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/restaurant_name"
+                app:layout_constraintEnd_toStartOf="@id/vote_count"
+                app:layout_constraintTop_toTopOf="@id/restaurant_name"
+                tools:text="8,2" />
+
+            <TextView
+                android:id="@+id/vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{@string/vote_count(restaurant.voteCount)}"
+                app:layout_constraintBottom_toBottomOf="@id/restaurant_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/restaurant_name"
+                tools:text="(1000)" />
+
+            <TextView
+                android:id="@+id/working_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{@string/working_hours(restaurant.openingHour,restaurant.closingHour)}"
+                app:layout_constraintStart_toStartOf="@+id/restaurant_name"
+                app:layout_constraintTop_toBottomOf="@id/vote_count"
+                tools:text="Working Hours 10:00 - 22:30" />
+
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_time" />
+
+            <TextView
+                android:id="@+id/free_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Free Delivery"
+                app:layout_constraintEnd_toStartOf="@+id/dot_two"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dot"
+                app:layout_constraintTop_toTopOf="@+id/delivery_time" />
+
+            <TextView
+                android:id="@+id/delivery_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{@string/delivery_time(restaurant.estimatedDeliveryMinute)}"
+                app:layout_constraintEnd_toStartOf="@+id/dot"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/working_hours"
+                tools:text="35-45 min." />
+
+            <TextView
+                android:id="@+id/dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="·"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/delivery_time"
+                app:layout_constraintEnd_toStartOf="@+id/free_delivery"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/delivery_time"
+                app:layout_constraintTop_toTopOf="@+id/delivery_time"
+                app:layout_constraintVertical_bias="0.461" />
+
+            <TextView
+                android:id="@+id/minimum_order_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/minimum_order_amount(restaurant.minimumOrderAmount)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dot_two"
+                app:layout_constraintTop_toTopOf="@+id/delivery_time"
+                tools:text="Min. ₺50.00" />
+
+            <TextView
+                android:id="@+id/dot_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="·"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/minimum_order_amount"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/free_delivery"
+                app:layout_constraintTop_toTopOf="@+id/dot" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/search_card"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp">
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:background="@android:color/transparent"
+                    android:hint="What are you craving for?"
+                    android:drawableLeft="@drawable/ic_baseline_search_24"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/menu"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Menu"
+                app:layout_constraintStart_toStartOf="@+id/divider"
+                app:layout_constraintTop_toBottomOf="@+id/search_card" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/food_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:submitList="@{viewModel.allFoods}"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/menu"
+                tools:listitem="@layout/food_list_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

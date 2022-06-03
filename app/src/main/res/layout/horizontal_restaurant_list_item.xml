@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.axuca.foodorder.model.Restaurant" />
+        
+        <variable
+            name="clickListener"
+            type="com.axuca.foodorder.adapter.RestaurantClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(restaurant.id)}">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/image_card"
+            android:layout_width="240dp"
+            android:layout_height="160dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                imageResource="@{restaurant.drawableRes}"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_illustration2" />
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|bottom"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@{@string/delivery_time(restaurant.estimatedDeliveryMinute)}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="30 min." />
+            </com.google.android.material.card.MaterialCardView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{restaurant.name}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_card"
+            tools:text="Dominos Pizza" />
+
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_baseline_star_24"
+            app:layout_constraintBottom_toBottomOf="@id/name"
+            app:layout_constraintEnd_toStartOf="@id/star"
+            app:layout_constraintTop_toTopOf="@id/name" />
+
+        <TextView
+            android:id="@+id/star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:text="@{String.valueOf(restaurant.star)}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/vote_count"
+            app:layout_constraintTop_toTopOf="@id/name"
+            tools:text="8,2" />
+
+        <TextView
+            android:id="@+id/vote_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{@string/vote_count(restaurant.voteCount)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/name"
+            tools:text="(1000)" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{@string/minimum_order_amount(restaurant.minimumOrderAmount)}"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="Minimum order amount 25 ₺" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

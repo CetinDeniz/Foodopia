@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "437001020928",
+    "firebase_url": "https://foodorder-8022a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "foodorder-8022a",
+    "storage_bucket": "foodorder-8022a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437001020928:android:4c1d5c456eaef053061ae5",
+        "android_client_info": {
+          "package_name": "com.axuca.foodorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437001020928-nrv9adqporkucdgutvge3f8i1g30htla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZXbz29R3cTDwvR_8t2HESdHUfFshbgmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437001020928-nrv9adqporkucdgutvge3f8i1g30htla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

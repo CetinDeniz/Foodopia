@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.axuca.foodorder.model.Restaurant" />
+
+        <variable
+            name="food"
+            type="com.axuca.foodorder.model.Food" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.FoodDetailFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/background"
+            style="@style/CustomCardViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image"
+                loadBigImage="@{food.imageName}"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/izgaratavuk" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/detail_food_name"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="@{food.name}"
+            android:textSize="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            tools:text="Izgara Köfte" />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_food_name" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="9dp"
+            app:layout_constraintEnd_toStartOf="@+id/delivery_card"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_star_24" />
+
+                <TextView
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="8.6" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="9dp"
+            app:layout_constraintBottom_toBottomOf="@id/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="#BB3434"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_minus" />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="1"
+                    android:textSize="24sp"
+                    tools:text="1" />
+
+                <ImageButton
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="#BB3434"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/delivery_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="9dp"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="@+id/cardView2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/delivery_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delivery_dining_24"
+                    android:tint="#BB3434"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{@string/delivery_time_detail(restaurant.estimatedDeliveryMinute)}"
+                    tools:text="45 minute" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/delivery_card"
+            app:layout_constraintTop_toTopOf="@id/cardView2">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="₺ Free Delivery" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/food_detail_price"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/detail_price(food.price)}"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_food_name"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintTop_toTopOf="@+id/detail_food_name"
+            tools:text="Price : ₺25" />
+
+
+        <TextView
+            android:id="@+id/total_price_label"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/total_price"
+            app:layout_constraintBottom_toTopOf="@+id/add_to_cart"
+            app:layout_constraintStart_toStartOf="@+id/detail_food_name"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/total_price"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/price(food.price)}"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/total_price_label"
+            app:layout_constraintTop_toTopOf="@+id/total_price_label"
+            tools:text="₺25" />
+
+        <Button
+            android:id="@+id/add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Add To Cart"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

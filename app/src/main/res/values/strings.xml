@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">FoodOrder</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="delivery_time">%s min.</string>
+    <string name="delivery_time_detail">%s minute</string>
+
+    <string name="vote_count">(%d)</string>
+    <string name="minimum_order_amount">Min. ₺%d</string>
+
+    <string name="working_hours">Working Hours %1$s - %2$s</string>
+
+    <string name="total_price">Total Price</string>
+    <string name="price">₺%d</string>
+    <string name="detail_price">Price : ₺%d</string>
+    <string name="cart_total_price">Total Price : ₺%d</string>
+
+    <string name="cart_quantity">Quantity : %s</string>
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cartFoodItem"
+            type="com.axuca.foodorder.model.CartFoodItem" />
+
+        <variable
+            name="addClickListener"
+            type="com.axuca.foodorder.adapter.CartItemAddClickListener" />
+
+        <variable
+            name="deleteClickListener"
+            type="com.axuca.foodorder.adapter.CartItemDeleteClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                loadImage="@{cartFoodItem.imageName}"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/burger" />
+
+            <TextView
+                android:id="@+id/food_name"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{cartFoodItem.name}"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Izgara Köfte" />
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/cardView"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                app:cardCornerRadius="8dp"-->
+            <!--                app:cardElevation="9dp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:orientation="horizontal">-->
+
+            <TextView
+                android:id="@+id/one_food_total_price"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{@string/price(Integer.parseInt(cartFoodItem.price) * Integer.parseInt(cartFoodItem.orderQuantity))}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/quantity"
+                tools:text="Total : ₺50" />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:background="@null"
+                android:onClick="@{() -> deleteClickListener.onClick(Integer.parseInt(cartFoodItem.id))}"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/quantity"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@{@string/cart_quantity(cartFoodItem.orderQuantity)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/food_name"
+                tools:text="Quantity : 1" />
+
+            <!--                    <ImageButton-->
+            <!--                        android:id="@+id/add"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginEnd="8dp"-->
+            <!--                        android:backgroundTint="#BB3434"-->
+            <!--                        android:padding="8dp"-->
+            <!--                        android:src="@drawable/ic_baseline_add_24" />-->
+
+            <!--                </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
