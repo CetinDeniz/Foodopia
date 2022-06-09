@@ -45,15 +45,32 @@
             app:layout_constraintTop_toTopOf="@+id/cart_label"
             tools:text="Total Price : ₺ 55" />
 
-<!--        <ImageView-->
-<!--            recyclerEmptyImage="@{viewModel.foods}"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/cart_recycler"-->
-<!--            app:layout_constraintEnd_toEndOf="@id/cart_recycler"-->
-<!--            app:layout_constraintStart_toStartOf="@id/cart_recycler"-->
-<!--            app:layout_constraintTop_toTopOf="@id/cart_recycler"-->
-<!--            tools:src="@drawable/burger" />-->
+        <LinearLayout
+            recyclerEmptyImage="@{viewModel.foods}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/cart_recycler"
+            app:layout_constraintEnd_toEndOf="@id/cart_recycler"
+            app:layout_constraintStart_toStartOf="@id/cart_recycler"
+            app:layout_constraintTop_toTopOf="@id/cart_recycler">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empty_cart"
+                tools:src="@drawable/ic_empty_cart"
+                tools:visibility="visible" />
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Your Cart is Empty" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_recycler"

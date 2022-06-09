@@ -2,6 +2,7 @@ package com.axuca.foodorder.util
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
@@ -56,10 +57,10 @@ fun RecyclerView.setCartAdapterData(foods: List<CartFoodItem>?) {
 
 /** Not working ? */
 @BindingAdapter("recyclerEmptyImage")
-fun ImageView.setImageVisibility(foodList: List<CartFoodItem>?) {
+fun LinearLayout.setLayoutVisibility(foodList: List<CartFoodItem>?) {
     visibility = if (foodList.isNullOrEmpty()) {
         View.VISIBLE
-    } else View.INVISIBLE
+    } else View.GONE
 }
 
 @BindingAdapter("totalPrice")
