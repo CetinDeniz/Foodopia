@@ -18,7 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RestaurantFragment : Fragment() {
-    private lateinit var binding: FragmentRestaurantBinding
+    private var _binding: FragmentRestaurantBinding? = null
+    private val binding get() = _binding!!
+
     private val args: RestaurantFragmentArgs by navArgs()
     private val viewModel by viewModels<RestaurantVM>()
 
@@ -26,7 +28,7 @@ class RestaurantFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRestaurantBinding.inflate(inflater, container, false)
+        _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,4 +64,8 @@ class RestaurantFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -24,7 +24,7 @@ class RegisterFragment : Fragment() {
     private lateinit var mFirebaseDatabase: DatabaseReference
 
     private var _binding: FragmentRegisterBinding? = null
-    private val binding: FragmentRegisterBinding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

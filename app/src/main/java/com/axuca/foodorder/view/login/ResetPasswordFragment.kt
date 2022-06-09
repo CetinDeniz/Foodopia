@@ -19,8 +19,9 @@ class ResetPasswordFragment : Fragment() {
 
     @Inject
     lateinit var mAuth: FirebaseAuth
+
     private var _binding: FragmentResetPasswordBinding? = null
-    private val binding: FragmentResetPasswordBinding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
