@@ -10,8 +10,8 @@ import coil.load
 import com.axuca.foodorder.R
 import com.axuca.foodorder.adapter.CartAdapter
 import com.axuca.foodorder.adapter.FoodAdapter
-import com.axuca.foodorder.model.CartFoodItem
-import com.axuca.foodorder.model.Food
+import com.axuca.foodorder.model.network.CartFoodItem
+import com.axuca.foodorder.model.network.Food
 
 private const val IMAGE_BASE_URL = "http://kasimadalan.pe.hu/yemekler/resimler/"
 private const val DETAIL_IMAGE_URL = "http://kasimadalan.pe.hu/yemekresimler/"
@@ -55,12 +55,12 @@ fun RecyclerView.setCartAdapterData(foods: List<CartFoodItem>?) {
 }
 
 /** Not working ? */
-//@BindingAdapter("recyclerEmptyImage")
-//fun ImageView.setImageVisibility(liveData: List<CartFoodItem>?) {
-//    visibility = if (liveData.isNullOrEmpty()) {
-//        View.VISIBLE
-//    } else View.INVISIBLE
-//}
+@BindingAdapter("recyclerEmptyImage")
+fun ImageView.setImageVisibility(foodList: List<CartFoodItem>?) {
+    visibility = if (foodList.isNullOrEmpty()) {
+        View.VISIBLE
+    } else View.INVISIBLE
+}
 
 @BindingAdapter("totalPrice")
 fun TextView.setTotalPriceText(totalPrice: Int?) {

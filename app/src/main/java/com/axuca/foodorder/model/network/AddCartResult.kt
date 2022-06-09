@@ -1,4 +1,4 @@
-package com.axuca.foodorder.model
+package com.axuca.foodorder.model.network
 
 
 data class AddCartResult(

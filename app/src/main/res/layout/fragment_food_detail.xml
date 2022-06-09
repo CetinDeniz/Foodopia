@@ -7,11 +7,11 @@
 
         <variable
             name="restaurant"
-            type="com.axuca.foodorder.model.Restaurant" />
+            type="com.axuca.foodorder.model.db.Restaurant" />
 
         <variable
             name="food"
-            type="com.axuca.foodorder.model.Food" />
+            type="com.axuca.foodorder.model.network.Food" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
                 android:id="@+id/image"
                 loadBigImage="@{food.imageName}"
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="280dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="80dp"
                 android:layout_marginEnd="16dp"

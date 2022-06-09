@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axuca.foodorder.databinding.FoodListItemBinding
-import com.axuca.foodorder.model.Food
+import com.axuca.foodorder.model.network.Food
 
 class FoodAdapter(
     private val clickListener: FoodClickListener,
-//    private val foods: List<Food>
 ) : ListAdapter<Food, FoodAdapter.FoodViewHolder>(DiffUtilCallback) {
 
     inner class FoodViewHolder(private val binding: FoodListItemBinding) :

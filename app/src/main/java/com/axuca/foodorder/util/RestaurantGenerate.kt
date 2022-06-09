@@ -1,7 +1,7 @@
 package com.axuca.foodorder.util
 
 import com.axuca.foodorder.R
-import com.axuca.foodorder.model.Restaurant
+import com.axuca.foodorder.model.db.Restaurant
 
 
 fun createRestaurants(): List<Restaurant> {

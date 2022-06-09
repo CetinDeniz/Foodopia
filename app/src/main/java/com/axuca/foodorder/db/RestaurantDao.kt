@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.axuca.foodorder.model.Restaurant
+import com.axuca.foodorder.model.db.Restaurant
 
 @Dao
 interface RestaurantDao {

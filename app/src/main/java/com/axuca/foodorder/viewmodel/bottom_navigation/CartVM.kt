@@ -1,11 +1,11 @@
-package com.axuca.foodorder.viewmodel
+package com.axuca.foodorder.viewmodel.bottom_navigation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.axuca.foodorder.model.CartFoodItem
+import com.axuca.foodorder.model.network.CartFoodItem
 import com.axuca.foodorder.network.FoodApiService
 import com.axuca.foodorder.repo.DataStoreRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,39 +19,37 @@ class CartVM @Inject constructor(
 ) : ViewModel() {
 
     private val _foods = MutableLiveData<List<CartFoodItem>>()
-
     val foods: LiveData<List<CartFoodItem>>
         get() = _foods
 
     private val _totalPrice = MutableLiveData<Int>()
-
     val totalPrice: LiveData<Int>
         get() = _totalPrice
 
+    private lateinit var userEmail: String
+
     init {
+        viewModelScope.launch {
+            userEmail = dataStoreRepo.getUserEmail()
+        }
         getFoodsFromCart()
     }
 
     private fun calculateTotalPrice() {
-        _totalPrice.value = _foods.value!!.sumOf {
+        _totalPrice.value = _foods.value?.sumOf {
             it.orderQuantity.toInt() * it.price.toInt()
-        }
+        } ?: 0
     }
 
     fun getFoodsFromCart() {
         viewModelScope.launch {
             try {
-                Log.e("getFromCart", "trying to get")
-
-                val userEmail = dataStoreRepo.getUserEmail()
-                Log.e("Email", userEmail)
-
-                val data = foodApiService.getFromCart(userEmail)
-
-                _foods.value = data.foodsInCart ?: listOf()
-                calculateTotalPrice()
+                _foods.value = foodApiService.getFromCart(userEmail).foodsInCart ?: listOf()
+                Log.e("getFoodsFromCart",_foods.value!!.size.toString())
             } catch (exception: Exception) {
                 Log.e("Foods", exception.stackTraceToString())
+            } finally {
+                calculateTotalPrice()
             }
         }
     }
@@ -59,13 +57,11 @@ class CartVM @Inject constructor(
     fun deleteFromCart(foodId: Int) {
         viewModelScope.launch {
             try {
-                val userEmail = dataStoreRepo.getUserEmail()
                 foodApiService.deleteFromCart(foodId, userEmail)
             } catch (exception: Exception) {
                 Log.e("Foods", exception.stackTraceToString())
             } finally {
                 getFoodsFromCart()
-                calculateTotalPrice()
             }
         }
     }

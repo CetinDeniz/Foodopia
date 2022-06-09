@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +15,11 @@ import androidx.navigation.fragment.findNavController
 import com.axuca.foodorder.adapter.RestaurantAdapter
 import com.axuca.foodorder.adapter.RestaurantClickListener
 import com.axuca.foodorder.databinding.FragmentHomeBinding
-import com.axuca.foodorder.viewmodel.HomeVM
+import com.axuca.foodorder.viewmodel.bottom_navigation.HomeVM
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,17 +52,25 @@ class HomeFragment : Fragment() {
             )
         }
 
-        initiliazeLocation()
+        runBlocking {
+            initiliazeLocation()
+        }
 
         with(binding) {
             nearbyRecycler.setHasFixedSize(true)
             popularRecycler.setHasFixedSize(true)
             allRecycler.setHasFixedSize(true)
 
+            if (!::location.isInitialized) {
+                Log.e("Location pair", " Not initiliazed")
+            }
             var adapter = RestaurantAdapter(
                 clickListener,
                 true,
-                viewModel.getSortedRestaurants(location.first, location.second)
+                viewModel.getSortedRestaurants(
+                    38.489950139953976,
+                    27.083443465917625
+                ) // App crashing in here location.first, location.second
             )
             nearbyRecycler.adapter = adapter
 
@@ -72,20 +82,21 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initiliazeLocation() {
-        val permissionCheck = ContextCompat.checkSelfPermission(
+    private fun permissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
             requireContext(),
             Manifest.permission.ACCESS_COARSE_LOCATION
-        )
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            location = Pair(38.489950139953976, 27.083443465917625)
-        } else {
-            location = Pair(38.489950139953976, 27.083443465917625)
+    private fun initiliazeLocation() {
+        if (permissionGranted()) {
 //            locationTask = flpc.lastLocation
 //            locationTask.addOnSuccessListener {
 //                location = Pair(it.latitude, it.longitude)
 //            }
+        } else {
+            location = Pair(38.489950139953976, 27.083443465917625)
         }
     }
 

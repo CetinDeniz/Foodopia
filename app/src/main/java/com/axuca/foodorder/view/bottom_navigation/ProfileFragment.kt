@@ -4,27 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.axuca.foodorder.databinding.FragmentProfileBinding
-import com.axuca.foodorder.injection.userEmailKey
-import com.axuca.foodorder.injection.userNameKey
+import com.axuca.foodorder.viewmodel.bottom_navigation.ProfileVM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
-    @Inject
-    lateinit var dataStore: DataStore<Preferences>
     private lateinit var binding: FragmentProfileBinding
+    private val viewModel by viewModels<ProfileVM>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,30 +29,30 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getUserNameAndEmail()
+        binding.apply {
+            viewModel = this@ProfileFragment.viewModel
+            lifecycleOwner = this@ProfileFragment
 
-        /** Google Sign-In Account */
-        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-
-        binding.signOut.setOnClickListener {
-            if (account == null) {
-                FirebaseAuth.getInstance().signOut()
-            } else {
-                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail()
-                    .build()
-                GoogleSignIn.getClient(requireActivity(), gso).signOut()
+            signOut.setOnClickListener {
+                signOut()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
             }
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
         }
     }
 
-    private fun getUserNameAndEmail() {
-        lifecycleScope.launch {
-            val dataStore = dataStore.data.first()
-            binding.userName.text = dataStore[userNameKey]
-            binding.email.text = dataStore[userEmailKey]
+    private fun signOut() {
+        /** Google Sign-In Account */
+        val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+
+        if (account == null) {
+            FirebaseAuth.getInstance().signOut()
+        } else {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+            GoogleSignIn.getClient(requireActivity(), gso).signOut()
         }
+        viewModel.resetUserInformation()
     }
 
 }

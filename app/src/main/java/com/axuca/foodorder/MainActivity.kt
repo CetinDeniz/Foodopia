@@ -3,7 +3,6 @@ package com.axuca.foodorder
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
@@ -13,10 +12,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.axuca.foodorder.databinding.ActivityMainBinding
 import com.axuca.foodorder.intro.Intro
 import com.axuca.foodorder.viewmodel.MainVM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,12 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainVM>()
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var navController: NavController
+    private val navController: NavController by lazy {
+        (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment).navController
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("onCreate : ", "before installSplashScreen")
         /** This must be execute before the onCreate and setContentView */
         installSplashScreen().apply {
             setOnExitAnimationListener { splashScreenViewProvider ->
@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                     duration = 1000L
                     doOnEnd { splashScreenViewProvider.remove() }
                 }
-
                 slideBack.start()
             }
 
@@ -57,19 +56,11 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        mAuth = FirebaseAuth.getInstance()
-
-        Log.e("onCreate : ", "before MainActivity setContentView()")
-        setContentView(R.layout.activity_main)
-        Log.e("onCreate : ", "after MainActivity setContentView()")
-
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigationView.visibility = when (destination.id) {
+            binding.bottomNavigation.visibility = when (destination.id) {
                 R.id.homeFragment -> View.VISIBLE
                 R.id.historyFragment -> View.VISIBLE
                 R.id.cartFragment -> View.VISIBLE
@@ -78,18 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        bottomNavigationView.setupWithNavController(navController)
-
-        /**
-         * This will do the following:
-         * Show a title in the app bar based off of the destination's label,
-         * and display the Up button whenever you're not on a top-level destination.
-         */
-//        setSupportActionBar()
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-//        val navController = navHostFragment.navController
-//
-//        setupActionBarWithNavController(navController)
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 
     override fun onStart() {
@@ -97,19 +77,18 @@ class MainActivity : AppCompatActivity() {
 
         // Check if user is signed in (non-null) and update UI accordingly.
         /** Sign-in with email */
-        val currentUser: FirebaseUser? = mAuth.currentUser
+        val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
         /** Google Sign-In */
         val account = GoogleSignIn.getLastSignedInAccount(this)
 
         if (currentUser == null && account == null) {
-
             val graph = navController.navInflater.inflate(R.navigation.navigation)
             graph.setStartDestination(R.id.loginFragment)
 
             navController.graph = graph
         }
-        Log.e("onStart : ", currentUser?.email ?: "currentUser is null")
-    }
 
+        viewModel.setReady()
+    }
 }

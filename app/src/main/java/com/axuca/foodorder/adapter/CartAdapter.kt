@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axuca.foodorder.adapter.CartAdapter.CartItemViewHolder
 import com.axuca.foodorder.databinding.CartFoodListItemBinding
-import com.axuca.foodorder.model.CartFoodItem
+import com.axuca.foodorder.model.network.CartFoodItem
 
 class CartAdapter(
     private val addClickListener: CartItemAddClickListener,

@@ -11,7 +11,7 @@ import com.axuca.foodorder.adapter.CartAdapter
 import com.axuca.foodorder.adapter.CartItemAddClickListener
 import com.axuca.foodorder.adapter.CartItemDeleteClickListener
 import com.axuca.foodorder.databinding.FragmentCartBinding
-import com.axuca.foodorder.viewmodel.CartVM
+import com.axuca.foodorder.viewmodel.bottom_navigation.CartVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +35,6 @@ class CartFragment : Fragment() {
         val addClickListener = CartItemAddClickListener {
 //            viewModel.cartAddItem()
         }
-
         val deleteClickListener = CartItemDeleteClickListener{
             viewModel.deleteFromCart(it)
         }

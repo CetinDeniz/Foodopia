@@ -7,7 +7,7 @@
 
         <variable
             name="cartFoodItem"
-            type="com.axuca.foodorder.model.CartFoodItem" />
+            type="com.axuca.foodorder.model.network.CartFoodItem" />
 
         <variable
             name="addClickListener"

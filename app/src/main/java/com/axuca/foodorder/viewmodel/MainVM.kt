@@ -1,6 +1,5 @@
 package com.axuca.foodorder.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.axuca.foodorder.repo.DataStoreRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,18 +9,13 @@ import javax.inject.Inject
 @HiltViewModel
 class MainVM @Inject constructor(private val repo: DataStoreRepo) : ViewModel() {
 
-    private var isReady: Boolean = false
+    private var isReady = false
     private var firstLaunch: Boolean = true
 
     init {
-        Log.e("HomeVM", isReady.toString())
-
         runBlocking {
             firstLaunch = repo.isFirstLaunch()
         }
-
-        isReady = true
-        Log.e("HomeVM", isReady.toString())
     }
 
     /** AppIntro slider for time first time app launch */
@@ -29,4 +23,7 @@ class MainVM @Inject constructor(private val repo: DataStoreRepo) : ViewModel() 
 
     /** For splash screen visibility */
     fun isReady() = isReady
+    fun setReady() {
+        isReady = true
+    }
 }

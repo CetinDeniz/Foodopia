@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.axuca.foodorder.databinding.HorizontalRestaurantListItemBinding
 import com.axuca.foodorder.databinding.VerticalRestaurantListItemBinding
-import com.axuca.foodorder.model.Restaurant
+import com.axuca.foodorder.model.db.Restaurant
 
 class RestaurantAdapter(
     private val clickListener: RestaurantClickListener,
@@ -19,13 +19,13 @@ class RestaurantAdapter(
 
         fun bind(restaurant: Restaurant, clickListener: RestaurantClickListener) {
             if (isHorizontal) {
-                with((binding as HorizontalRestaurantListItemBinding)) {
+                (binding as HorizontalRestaurantListItemBinding).apply {
                     this.restaurant = restaurant
                     this.clickListener = clickListener
                     executePendingBindings()
                 }
             } else {
-                with((binding as VerticalRestaurantListItemBinding)) {
+                (binding as VerticalRestaurantListItemBinding).apply {
                     this.restaurant = restaurant
                     this.clickListener = clickListener
                     executePendingBindings()

@@ -1,4 +1,4 @@
-package com.axuca.foodorder.model
+package com.axuca.foodorder.model.db
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes

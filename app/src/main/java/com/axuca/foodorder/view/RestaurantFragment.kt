@@ -36,7 +36,7 @@ class RestaurantFragment : Fragment() {
         val clickListener = FoodClickListener {
             findNavController().navigate(
                 RestaurantFragmentDirections.actionRestaurantFragmentToFoodDetail(
-                    viewModel.getFoodWithId(it),args.restaurant
+                    viewModel.getFoodWithId(it), args.restaurant
                 )
             )
         }

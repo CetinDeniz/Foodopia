@@ -1,9 +1,9 @@
 package com.axuca.foodorder.network
 
-import com.axuca.foodorder.model.AddCartResult
-import com.axuca.foodorder.model.CartResult
-import com.axuca.foodorder.model.Food
-import com.axuca.foodorder.model.FoodResult
+import com.axuca.foodorder.model.network.AddCartResult
+import com.axuca.foodorder.model.network.CartResult
+import com.axuca.foodorder.model.network.Food
+import com.axuca.foodorder.model.network.FoodResult
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -21,8 +21,8 @@ private const val ADD_FOOD = "sepeteYemekEkle.php"
 private const val DELETE_FOOD = "sepettenYemekSil.php"
 
 /**
- * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
- * full Kotlin compatibility.
+ * Build the Moshi object that Retrofit will be using,
+ * making sure to add the Kotlin adapter for full Kotlin compatibility.
  */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -38,7 +38,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 /**
- * A public interface that exposes the [getProperties] method
+ * A public interface that exposes the [getProperties] and [addProperties] method
  */
 interface FoodApiService {
     /**
@@ -58,13 +58,13 @@ interface FoodApiService {
         @Field("kullanici_adi") email: String
     ): AddCartResult
 
-    @POST(CART_FOODS) // "sepettekiYemekleriGetir.php"
+    @POST(CART_FOODS)
     @FormUrlEncoded
     suspend fun getFromCart(
         @Field("kullanici_adi") email: String
     ): CartResult
 
-    @POST(DELETE_FOOD) // "sepettenYemekSil.php"
+    @POST(DELETE_FOOD)
     @FormUrlEncoded
     suspend fun deleteFromCart(
         @Field("sepet_yemek_id") foodId: Int,
@@ -75,6 +75,8 @@ interface FoodApiService {
 /**
  * A public Api object that exposes the lazy-initialized Retrofit service
  */
-object FoodApi {
-    val retrofitService: FoodApiService by lazy { retrofit.create(FoodApiService::class.java) }
+class FoodApi {
+    companion object{
+        val retrofitService: FoodApiService by lazy { retrofit.create(FoodApiService::class.java) }
+    }
 }

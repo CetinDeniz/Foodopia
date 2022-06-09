@@ -8,7 +8,7 @@
 
         <variable
             name="restaurant"
-            type="com.axuca.foodorder.model.Restaurant" />
+            type="com.axuca.foodorder.model.db.Restaurant" />
         
         <variable
             name="clickListener"

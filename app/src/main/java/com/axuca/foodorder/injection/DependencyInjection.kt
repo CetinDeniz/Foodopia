@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.axuca.foodorder.db.RestaurantDatabase
 import com.axuca.foodorder.network.FoodApi
@@ -13,6 +11,7 @@ import com.axuca.foodorder.network.FoodApiService
 import com.axuca.foodorder.repo.DataStoreRepo
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,13 +20,10 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 private const val USER_PREFERENCES = "user_preferences"
-val firstLaunchKey = booleanPreferencesKey("first_launch")
-val userNameKey = stringPreferencesKey("user_name")
-val userEmailKey = stringPreferencesKey("user_email")
 
 @InstallIn(SingletonComponent::class)
 @Module
-object DataStoreModule {
+private object DataStoreModule {
 
     @Singleton
     @Provides
@@ -83,3 +79,13 @@ object FusedLocationProviderModule {
     }
 }
 
+@InstallIn(SingletonComponent::class)
+@Module
+object FirebaseAuthenticationModule {
+
+    @Singleton
+    @Provides
+    fun provideFirebaseAuthenticationModule(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+}

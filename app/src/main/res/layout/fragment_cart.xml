@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.axuca.foodorder.viewmodel.CartVM" />
+            type="com.axuca.foodorder.viewmodel.bottom_navigation.CartVM" />
     </data>
 
     <!--    <androidx.core.widget.NestedScrollView-->
@@ -53,7 +53,7 @@
 <!--            app:layout_constraintEnd_toEndOf="@id/cart_recycler"-->
 <!--            app:layout_constraintStart_toStartOf="@id/cart_recycler"-->
 <!--            app:layout_constraintTop_toTopOf="@id/cart_recycler"-->
-<!--            tools:src="@drawable/ic_empty_cart" />-->
+<!--            tools:src="@drawable/burger" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_recycler"

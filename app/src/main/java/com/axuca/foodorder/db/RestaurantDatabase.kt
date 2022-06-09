@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.axuca.foodorder.model.Restaurant
+import com.axuca.foodorder.model.db.Restaurant
 
 /**
  * Set exportSchema to false, so as not to keep schema version history backups.

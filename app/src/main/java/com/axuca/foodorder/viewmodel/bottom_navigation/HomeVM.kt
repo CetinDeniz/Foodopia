@@ -1,8 +1,8 @@
-package com.axuca.foodorder.viewmodel
+package com.axuca.foodorder.viewmodel.bottom_navigation
 
 import androidx.lifecycle.ViewModel
 import com.axuca.foodorder.db.RestaurantDatabase
-import com.axuca.foodorder.model.Restaurant
+import com.axuca.foodorder.model.db.Restaurant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -12,7 +12,10 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 @HiltViewModel
-class HomeVM @Inject constructor(private val database: RestaurantDatabase) : ViewModel() {
+class HomeVM @Inject constructor(
+    private val database: RestaurantDatabase,
+//    private val flpc: FusedLocationProviderClient
+) : ViewModel() {
 
     private lateinit var restaurants: List<Restaurant>
 
@@ -22,12 +25,9 @@ class HomeVM @Inject constructor(private val database: RestaurantDatabase) : Vie
         }
     }
 
+
     fun getRestaurants(): List<Restaurant> {
         return restaurants
-    }
-
-    fun getSortedRestaurants(latitude:Double, longitude:Double): List<Restaurant> {
-        return restaurants.sortByDistance(latitude,longitude)
     }
 
     fun getPopularRestaurants(): List<Restaurant> {
@@ -36,7 +36,17 @@ class HomeVM @Inject constructor(private val database: RestaurantDatabase) : Vie
         }
     }
 
-    private fun List<Restaurant>.sortByDistance(latitude:Double, longitude:Double): List<Restaurant> {
+    fun getSortedRestaurants(
+        latitude: Double = 38.489950139953976,
+        longitude: Double = 27.083443465917625
+    ): List<Restaurant> {
+        return restaurants.sortByDistance(latitude, longitude)
+    }
+
+    private fun List<Restaurant>.sortByDistance(
+        latitude: Double,
+        longitude: Double
+    ): List<Restaurant> {
         return sortedBy {
             getDistanceFromLatLonInKm(
                 latitude,
@@ -46,7 +56,6 @@ class HomeVM @Inject constructor(private val database: RestaurantDatabase) : Vie
             )
         }
     }
-
 
     private fun getDistanceFromLatLonInKm(
         userLatitude: Double,
