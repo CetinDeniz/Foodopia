@@ -35,14 +35,14 @@ class CartFragment : Fragment() {
         val addClickListener = CartItemAddClickListener {
 //            viewModel.cartAddItem()
         }
-        val deleteClickListener = CartItemDeleteClickListener{
+        val deleteClickListener = CartItemDeleteClickListener {
             viewModel.deleteFromCart(it)
         }
 
         binding.apply {
             viewModel = this@CartFragment.viewModel
             lifecycleOwner = this@CartFragment
-            cartRecycler.adapter = CartAdapter(addClickListener,deleteClickListener)
+            cartRecycler.adapter = CartAdapter(addClickListener, deleteClickListener)
 
             orderButton.setOnClickListener {
                 this@CartFragment.viewModel.order()
@@ -50,6 +50,5 @@ class CartFragment : Fragment() {
             }
         }
     }
-
 
 }

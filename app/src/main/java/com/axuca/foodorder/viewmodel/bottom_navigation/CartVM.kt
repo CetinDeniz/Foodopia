@@ -44,10 +44,12 @@ class CartVM @Inject constructor(
     fun getFoodsFromCart() {
         viewModelScope.launch {
             try {
-                _foods.value = foodApiService.getFromCart(userEmail).foodsInCart ?: listOf()
-                Log.e("getFoodsFromCart",_foods.value!!.size.toString())
+                _foods.value = foodApiService.getFromCart(userEmail).foodsInCart
+                Log.e("getFoodsFromCart", _foods.value!!.size.toString())
             } catch (exception: Exception) {
-                Log.e("Foods", exception.stackTraceToString())
+                Log.e("getFoodsFromCart", exception.stackTraceToString())
+                /** Throwing exception when last item deleted */
+                _foods.value = listOf()
             } finally {
                 calculateTotalPrice()
             }
@@ -59,7 +61,7 @@ class CartVM @Inject constructor(
             try {
                 foodApiService.deleteFromCart(foodId, userEmail)
             } catch (exception: Exception) {
-                Log.e("Foods", exception.stackTraceToString())
+                Log.e("deleteFromCart", exception.stackTraceToString())
             } finally {
                 getFoodsFromCart()
             }
