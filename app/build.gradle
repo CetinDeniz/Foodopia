@@ -112,6 +112,8 @@ dependencies {
 
     /** Location */
     implementation 'com.google.android.gms:play-services-location:19.0.1'
+    /** For waiting location */
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

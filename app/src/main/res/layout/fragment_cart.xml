@@ -10,10 +10,6 @@
             type="com.axuca.foodorder.viewmodel.bottom_navigation.CartVM" />
     </data>
 
-    <!--    <androidx.core.widget.NestedScrollView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent">-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,10 +20,10 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Cart"
-            android:textSize="32dp"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/large"
+            android:text="@string/cart"
+            android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,14 +35,14 @@
             totalPrice="@{viewModel.totalPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="@dimen/large"
             app:layout_constraintBottom_toBottomOf="@+id/cart_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cart_label"
             tools:text="Total Price : ₺ 55" />
 
         <LinearLayout
-            recyclerEmptyImage="@{viewModel.foods}"
+            recyclerEmptyImage="@{viewModel.emptyCart}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -68,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Your Cart is Empty" />
+                android:text="@string/your_cart_is_empty" />
 
         </LinearLayout>
 
@@ -77,7 +73,7 @@
             submitCartList="@{viewModel.foods}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/medium"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -89,16 +85,17 @@
 
         <Button
             android:id="@+id/order_button"
+            recyclerOrderButton="@{viewModel.foods}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="64dp"
-            android:text="Order"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginEnd="@dimen/medium"
+            android:layout_marginBottom="@dimen/bottom_nav_height"
+            android:text="@string/order"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--    </androidx.core.widget.NestedScrollView>-->
 </layout>

@@ -1,5 +1,6 @@
 package com.axuca.foodorder.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,12 +19,12 @@ class RestaurantVM @Inject constructor(private val foodApiService: FoodApiServic
     private lateinit var immutableFoods: List<Food>
 
     private var _allFoods = MutableLiveData<List<Food>>()
-
     val allFoods: LiveData<List<Food>>
         /** Adapter observing */
         get() = _allFoods
 
     init {
+        Log.e("RestaurantVM"," init block")
         initiliazeData()
     }
 

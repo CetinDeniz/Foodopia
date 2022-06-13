@@ -3,6 +3,7 @@ package com.axuca.foodorder
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.viewModels
@@ -15,9 +16,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.axuca.foodorder.databinding.ActivityMainBinding
 import com.axuca.foodorder.intro.Intro
 import com.axuca.foodorder.viewmodel.MainVM
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("MainActivity", " onCreate start")
         /** This must be execute before the onCreate and setContentView */
         installSplashScreen().apply {
             setOnExitAnimationListener { splashScreenViewProvider ->
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         if (viewModel.isFirstLaunch()) {
+            Log.e("MainActivity", " onCreate - checking isFirstLaunch")
             startActivity(Intent(applicationContext, Intro::class.java))
             finish()
         }
@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            Log.e("MainActivity", " onCreate - navController.addOnDestinationChangedListener")
             binding.bottomNavigation.visibility = when (destination.id) {
                 R.id.homeFragment -> View.VISIBLE
                 R.id.historyFragment -> View.VISIBLE
@@ -70,20 +71,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.bottomNavigation.setupWithNavController(navController)
-    }
-
-    override fun onStart() {
-        super.onStart()
 
         // Check if user is signed in (non-null) and update UI accordingly.
-        /** Sign-in with email */
-        val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-
-        /** Google Sign-In */
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-
-        if (currentUser == null && account == null) {
+        if (viewModel.isUserSignedIn()) {
             val graph = navController.navInflater.inflate(R.navigation.navigation)
+
             graph.setStartDestination(R.id.loginFragment)
 
             navController.graph = graph
@@ -91,4 +83,5 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.setReady()
     }
+
 }

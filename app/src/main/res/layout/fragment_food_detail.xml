@@ -33,12 +33,12 @@
                 loadBigImage="@{food.imageName}"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/medium"
                 android:layout_marginTop="80dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:layout_marginEnd="@dimen/medium"
+                android:layout_marginBottom="@dimen/small"
+                android:paddingStart="@dimen/medium"
+                android:paddingEnd="@dimen/medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -51,10 +51,10 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="@dimen/xlarge"
+            android:layout_marginTop="@dimen/xlarge"
             android:text="@{food.name}"
-            android:textSize="28dp"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2"
             tools:text="Izgara Köfte" />
@@ -64,10 +64,10 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+            android:layout_marginStart="@dimen/xlarge"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginEnd="@dimen/xlarge"
+            android:text="@string/food_explanation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detail_food_name" />
@@ -76,9 +76,9 @@
             android:id="@+id/cardView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginTop="@dimen/medium"
+            app:cardCornerRadius="@dimen/small"
             app:cardElevation="9dp"
             app:layout_constraintEnd_toStartOf="@+id/delivery_card"
             app:layout_constraintHorizontal_bias="0.5"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="@dimen/small">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -101,8 +101,8 @@
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="8.6" />
+                    android:layout_marginStart="@dimen/small"
+                    android:text="@string/dummy_food_star" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -110,7 +110,7 @@
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/small"
             app:cardElevation="9dp"
             app:layout_constraintBottom_toBottomOf="@id/background"
             app:layout_constraintEnd_toEndOf="parent"
@@ -122,15 +122,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="@dimen/small">
 
                 <ImageButton
                     android:id="@+id/delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:backgroundTint="#BB3434"
-                    android:padding="8dp"
+                    android:layout_marginStart="@dimen/small"
+                    android:backgroundTint="@color/primaryColor"
+                    android:padding="@dimen/small"
                     android:src="@drawable/ic_minus" />
 
                 <TextView
@@ -148,9 +148,9 @@
                     android:id="@+id/add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="#BB3434"
-                    android:padding="8dp"
+                    android:layout_marginEnd="@dimen/small"
+                    android:backgroundTint="@color/primaryColor"
+                    android:padding="@dimen/small"
                     android:src="@drawable/ic_baseline_add_24" />
 
             </LinearLayout>
@@ -161,7 +161,7 @@
             android:id="@+id/delivery_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/small"
             app:cardElevation="9dp"
             app:layout_constraintEnd_toStartOf="@+id/materialCardView"
             app:layout_constraintHorizontal_bias="0.5"
@@ -171,14 +171,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:padding="@dimen/small">
 
                 <ImageView
                     android:id="@+id/delivery_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_delivery_dining_24"
-                    android:tint="#BB3434"
                     tools:ignore="UseAppTint" />
 
                 <TextView
@@ -186,7 +185,7 @@
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/small"
                     android:text="@{@string/delivery_time_detail(restaurant.estimatedDeliveryMinute)}"
                     tools:text="45 minute" />
             </LinearLayout>
@@ -198,7 +197,7 @@
             android:id="@+id/materialCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/small"
             app:cardElevation="9dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -210,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="₺ Free Delivery" />
+                android:text="@string/free_delivery" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -230,8 +229,8 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="@dimen/large"
+            android:layout_marginBottom="@dimen/large"
             android:text="@string/total_price"
             app:layout_constraintBottom_toTopOf="@+id/add_to_cart"
             app:layout_constraintStart_toStartOf="@+id/detail_food_name"
@@ -242,8 +241,8 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium"
             android:text="@{@string/price(food.price)}"
-            android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@+id/total_price_label"
             app:layout_constraintTop_toTopOf="@+id/total_price_label"
             tools:text="₺25" />
@@ -252,10 +251,10 @@
             android:id="@+id/add_to_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Add To Cart"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginEnd="@dimen/medium"
+            android:layout_marginBottom="@dimen/medium"
+            android:text="@string/add_to_cart"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

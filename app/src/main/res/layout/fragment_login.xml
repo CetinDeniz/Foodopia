@@ -11,24 +11,11 @@
         android:layout_height="wrap_content"
         tools:context=".view.login.LoginFragment">
 
-        <!--        app:lottie_imageAssetsFolder="images/"-->
-        <!--        <com.airbnb.lottie.LottieAnimationView-->
-        <!--            android:id="@+id/lottieAnimationView"-->
-        <!--            android:layout_width="240dp"-->
-        <!--            android:layout_height="240dp"-->
-        <!--            android:layout_marginTop="24dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:lottie_autoPlay="true"-->
-        <!--            app:lottie_loop="true"-->
-        <!--            app:lottie_rawRes="@raw/login_lottie" />-->
-
         <ImageView
             android:id="@+id/illustration"
             android:layout_width="260dp"
             android:layout_height="260dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/medium"
             android:src="@drawable/ic_illustration2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +25,8 @@
             android:id="@+id/login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Login"
+            android:layout_marginTop="@dimen/medium"
+            android:text="@string/login"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +49,11 @@
             android:id="@+id/email_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginEnd="@dimen/large"
             android:hint="@string/email"
-            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopEnd="@dimen/medium"
             app:boxCornerRadiusTopStart="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,11 +73,11 @@
             android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginEnd="@dimen/large"
             android:hint="@string/password"
-            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopEnd="@dimen/medium"
             app:boxCornerRadiusTopStart="4dp"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,11 +97,11 @@
             android:id="@+id/sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginEnd="@dimen/large"
             android:shadowRadius="@integer/material_motion_duration_long_1"
-            android:text="Login"
+            android:text="@string/login"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,13 +111,14 @@
             android:id="@+id/forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/small"
             android:clickable="true"
-            android:text="Forgot password?"
-            android:textColor="#1317dd"
+            android:text="@string/forgot_password"
+            android:textColor="@color/secondaryLightColor"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/password_input_layout"
-            app:layout_constraintTop_toBottomOf="@+id/password_input_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+            android:focusable="true" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/materialDivider2"
@@ -157,8 +145,8 @@
             android:id="@+id/or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Or"
+            android:layout_marginTop="@dimen/large"
+            android:text="@string/or"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintEnd_toStartOf="@+id/materialDivider2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -169,7 +157,7 @@
             android:id="@+id/google_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/large"
             app:buttonSize="wide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,9 +167,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            android:text="Don't have an account?"
+            android:layout_marginTop="@dimen/large"
+            android:layout_marginBottom="@dimen/medium"
+            android:text="@string/don_t_have_an_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/create_account"
             app:layout_constraintHorizontal_bias="0.5"
@@ -195,14 +183,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:clickable="true"
-            android:text="Register now"
-            android:textColor="#1317dd"
+            android:text="@string/register_now"
+            android:textColor="@color/secondaryLightColor"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            android:focusable="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

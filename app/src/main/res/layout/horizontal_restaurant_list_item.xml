@@ -24,7 +24,7 @@
             android:id="@+id/image_card"
             android:layout_width="240dp"
             android:layout_height="160dp"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,13 +41,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|bottom"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="16dp">
+                android:layout_margin="@dimen/small"
+                app:cardCornerRadius="@dimen/medium">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:padding="@dimen/small"
                     android:text="@{@string/delivery_time(restaurant.estimatedDeliveryMinute)}"
                     android:textSize="12sp"
                     android:textStyle="bold"

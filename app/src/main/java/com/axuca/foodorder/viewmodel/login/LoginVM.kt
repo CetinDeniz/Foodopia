@@ -17,11 +17,14 @@ class LoginVM @Inject constructor(
     private val dataStoreRepo: DataStoreRepo,
 ) : ViewModel() {
 
+    init {
+        Log.e("LoginVM", " init block")
+    }
+
     fun handleSignInResult(data: Intent?) {
         try {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val account = task.getResult(ApiException::class.java)
-//            viewModelScope.launch {
             runBlocking {
                 dataStoreRepo.setUserEmail(account.email)
                 dataStoreRepo.setUserName(account.displayName)
@@ -35,7 +38,6 @@ class LoginVM @Inject constructor(
 
     fun setEmail(email: String) {
         viewModelScope.launch {
-//        runBlocking {
             dataStoreRepo.setUserEmail(email)
         }
     }

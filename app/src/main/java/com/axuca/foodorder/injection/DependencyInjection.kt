@@ -9,6 +9,8 @@ import com.axuca.foodorder.db.RestaurantDatabase
 import com.axuca.foodorder.network.FoodApi
 import com.axuca.foodorder.network.FoodApiService
 import com.axuca.foodorder.repo.DataStoreRepo
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -87,5 +89,16 @@ object FirebaseAuthenticationModule {
     @Provides
     fun provideFirebaseAuthenticationModule(): FirebaseAuth {
         return FirebaseAuth.getInstance()
+    }
+}
+
+@InstallIn(SingletonComponent::class)
+@Module
+object GoogleSignInModule {
+
+    @Singleton
+    @Provides
+    fun provideGoogleSignInAccountModule(@ApplicationContext appContext: Context): GoogleSignInAccount? {
+        return GoogleSignIn.getLastSignedInAccount(appContext)
     }
 }

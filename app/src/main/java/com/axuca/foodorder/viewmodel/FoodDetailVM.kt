@@ -15,6 +15,10 @@ class FoodDetailVM @Inject constructor(
     private val dataStoreRepo: DataStoreRepo
 ) : ViewModel() {
 
+    init {
+        Log.e("FoodDetailVM"," init block")
+    }
+
     fun addToCart(
         foodName: String,
         foodImageName: String,

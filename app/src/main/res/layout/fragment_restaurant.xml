@@ -38,8 +38,8 @@
                 android:id="@+id/restaurant_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/medium"
+                android:layout_marginTop="@dimen/medium"
                 android:text="@{restaurant.name}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textSize="24sp"
@@ -49,8 +49,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="@dimen/medium"
+                android:layout_height="@dimen/medium"
                 android:layout_marginEnd="2dp"
                 android:src="@drawable/ic_baseline_star_24"
                 app:layout_constraintBottom_toBottomOf="@id/restaurant_name"
@@ -74,7 +74,7 @@
                 android:id="@+id/vote_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/medium"
                 android:text="@{@string/vote_count(restaurant.voteCount)}"
                 app:layout_constraintBottom_toBottomOf="@id/restaurant_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
                 android:id="@+id/working_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium"
                 android:text="@{@string/working_hours(restaurant.openingHour,restaurant.closingHour)}"
                 app:layout_constraintStart_toStartOf="@+id/restaurant_name"
                 app:layout_constraintTop_toBottomOf="@id/vote_count"
@@ -96,7 +96,7 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/medium"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
                 android:id="@+id/free_delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Free Delivery"
+                android:text="@string/restaurant_free_delivery"
                 app:layout_constraintEnd_toStartOf="@+id/dot_two"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/dot"
@@ -116,7 +116,7 @@
                 android:id="@+id/delivery_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium"
                 android:text="@{@string/delivery_time(restaurant.estimatedDeliveryMinute)}"
                 app:layout_constraintEnd_toStartOf="@+id/dot"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -129,7 +129,7 @@
                 android:id="@+id/dot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="·"
+                android:text="@string/dot"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/delivery_time"
@@ -154,7 +154,7 @@
                 android:id="@+id/dot_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="·"
+                android:text="@string/dot"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/minimum_order_amount"
@@ -165,24 +165,24 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/search_card"
                 android:layout_width="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/medium"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_marginEnd="@dimen/medium"
+                app:cardCornerRadius="@dimen/small"
+                app:cardElevation="@dimen/small"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider">
 
                 <EditText
                     android:id="@+id/search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
                     android:background="@android:color/transparent"
-                    android:hint="What are you craving for?"
-                    android:drawableLeft="@drawable/ic_baseline_search_24"/>
+                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:hint="@string/what_are_you_craving_for"
+                    android:padding="@dimen/small" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -191,8 +191,8 @@
                 style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Menu"
+                android:layout_marginTop="@dimen/medium"
+                android:text="@string/menu"
                 app:layout_constraintStart_toStartOf="@+id/divider"
                 app:layout_constraintTop_toBottomOf="@+id/search_card" />
 
@@ -200,13 +200,13 @@
                 android:id="@+id/food_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:submitList="@{viewModel.allFoods}"
-                android:layout_marginTop="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="@dimen/small"
                 android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu"
+                app:submitList="@{viewModel.allFoods}"
                 tools:listitem="@layout/food_list_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

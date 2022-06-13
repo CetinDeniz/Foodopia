@@ -20,4 +20,33 @@
     <string name="cart_total_price">Total Price : ₺%d</string>
 
     <string name="cart_quantity">Quantity : %s</string>
+    <string name="cart">Cart</string>
+    <string name="your_cart_is_empty">Your Cart is Empty</string>
+    <string name="order">Order</string>
+    <string name="food_explanation">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</string>
+    <string name="dummy_food_star">8.6</string>
+    <string name="free_delivery">₺ Free Delivery</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="nearby_restaurants">Nearby Restaurants</string>
+    <string name="see_all">See all</string>
+    <string name="popular_restaurants">Popular Restaurants</string>
+    <string name="all_restaurants">All Restaurants</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="or">Or</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_now">Register now</string>
+    <string name="sign_out">Sign-Out</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name_and_surname">Name and Surname</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="forgot_password_label">Forgot Password ?</string>
+    <string name="forgot_password_explanation">Don\'t worry! It happens. \nPlease enter the email associated with your account and we\'ll send an email to reset your password.</string>
+    <string name="send_email">Send Email</string>
+    <string name="restaurant_free_delivery">Free Delivery</string>
+    <string name="dot">·</string>
+    <string name="what_are_you_craving_for">What are you craving for?</string>
+    <string name="menu">Menu</string>
 </resources>

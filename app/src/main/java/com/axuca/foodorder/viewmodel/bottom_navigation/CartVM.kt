@@ -26,19 +26,18 @@ class CartVM @Inject constructor(
     val totalPrice: LiveData<Int>
         get() = _totalPrice
 
+    /** With giving false value at the start, empty view is not shown immediately */
+    private val _emptyCart = MutableLiveData(false)
+    val emptyCart: LiveData<Boolean> get() = _emptyCart
+
     private lateinit var userEmail: String
 
     init {
+        Log.e("CartVM", " init block")
         viewModelScope.launch {
             userEmail = dataStoreRepo.getUserEmail()
+            getFoodsFromCart()
         }
-        getFoodsFromCart()
-    }
-
-    private fun calculateTotalPrice() {
-        _totalPrice.value = _foods.value?.sumOf {
-            it.orderQuantity.toInt() * it.price.toInt()
-        } ?: 0
     }
 
     fun getFoodsFromCart() {
@@ -47,10 +46,11 @@ class CartVM @Inject constructor(
                 _foods.value = foodApiService.getFromCart(userEmail).foodsInCart
                 Log.e("getFoodsFromCart", _foods.value!!.size.toString())
             } catch (exception: Exception) {
+                /** Exception catches when last item deleted */
                 Log.e("getFoodsFromCart", exception.stackTraceToString())
-                /** Throwing exception when last item deleted */
                 _foods.value = listOf()
             } finally {
+                isCartEmpty()
                 calculateTotalPrice()
             }
         }
@@ -72,6 +72,16 @@ class CartVM @Inject constructor(
         _foods.value?.forEach {
             deleteFromCart(it.id.toInt())
         }
+    }
+
+    private fun calculateTotalPrice() {
+        _totalPrice.value = _foods.value?.sumOf {
+            it.orderQuantity.toInt() * it.price.toInt()
+        } ?: 0
+    }
+
+    private fun isCartEmpty() {
+        _emptyCart.value = _foods.value?.isEmpty()
     }
 
 }
