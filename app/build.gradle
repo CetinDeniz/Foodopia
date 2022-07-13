@@ -44,9 +44,9 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     /** Navigation */
@@ -58,7 +58,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
 
     // For by viewModels() in activity
-    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.activity:activity-ktx:1.5.0"
 
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle"
@@ -96,8 +96,8 @@ dependencies {
     /** Web service requests and result converting */
     // Retrofit and Moshi Converter
 //    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_with_moshi"
+
     // Moshi and Codegen
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_codegen"
     ksp("com.squareup.moshi:moshi-kotlin-codegen:$moshi_codegen")
@@ -111,9 +111,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$room"
 
     /** Location */
-    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
     /** For waiting location */
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
+
+    /** Lottie */
+    implementation "com.airbnb.android:lottie:$lottie"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

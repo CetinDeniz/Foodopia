@@ -1,4 +1,4 @@
-package com.axuca.foodorder
+package com.axuca.foodorder.view
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.axuca.foodorder.R
 import com.axuca.foodorder.databinding.ActivityMainBinding
 import com.axuca.foodorder.intro.Intro
 import com.axuca.foodorder.viewmodel.MainVM
@@ -76,8 +77,7 @@ class MainActivity : AppCompatActivity() {
         if (viewModel.isUserSignedIn()) {
             val graph = navController.navInflater.inflate(R.navigation.navigation)
 
-            graph.setStartDestination(R.id.loginFragment)
-
+            graph.setStartDestination(R.id.loginNavigationGraph)
             navController.graph = graph
         }
 

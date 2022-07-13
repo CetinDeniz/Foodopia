@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.axuca.foodorder.R
 import com.axuca.foodorder.databinding.FragmentLoginBinding
 import com.axuca.foodorder.viewmodel.login.LoginVM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -30,7 +31,8 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    @Inject lateinit var mAuth: FirebaseAuth
+    @Inject
+    lateinit var mAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +44,7 @@ class LoginFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == Activity.RESULT_OK) {
                     viewModel.handleSignInResult(it.data)
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
             }
 
@@ -89,7 +91,8 @@ class LoginFragment : Fragment() {
                         Snackbar.LENGTH_SHORT
                     ).show()
                     viewModel.setEmail(email)
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+//                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     Snackbar.make(
                         binding.root,

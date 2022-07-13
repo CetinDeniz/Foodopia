@@ -1,12 +1,18 @@
 package com.axuca.foodorder.view.bottom_navigation
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.axuca.foodorder.R
 import com.axuca.foodorder.adapter.CartAdapter
 import com.axuca.foodorder.adapter.CartItemAddClickListener
 import com.axuca.foodorder.adapter.CartItemDeleteClickListener
@@ -33,6 +39,7 @@ class CartFragment : Fragment() {
 
         viewModel.getFoodsFromCart()
 
+        /** Gonna implement later */
         val addClickListener = CartItemAddClickListener {
 //            viewModel.cartAddItem()
         }
@@ -46,8 +53,7 @@ class CartFragment : Fragment() {
             cartRecycler.adapter = CartAdapter(addClickListener, deleteClickListener)
 
             orderButton.setOnClickListener {
-                this@CartFragment.viewModel.order()
-                findNavController().navigate(CartFragmentDirections.actionCartFragmentToHomeFragment())
+                showOrderDialog()
             }
         }
     }
@@ -55,6 +61,23 @@ class CartFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showOrderDialog() {
+        val dialog = Dialog(requireActivity()).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(false)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setContentView(R.layout.order_dialog)
+        }
+
+        /** Button Click listener */
+        dialog.findViewById<Button>(R.id.close).setOnClickListener {
+            this@CartFragment.viewModel.order()
+            dialog.dismiss()
+            findNavController().navigate(R.id.action_global_homeFragment)
+        }
+        dialog.show()
     }
 
 }

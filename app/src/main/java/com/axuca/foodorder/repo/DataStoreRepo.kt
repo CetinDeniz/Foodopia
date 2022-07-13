@@ -1,5 +1,6 @@
 package com.axuca.foodorder.repo
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -35,6 +36,7 @@ class DataStoreRepo @Inject constructor(private val dataStore: DataStore<Prefere
     }
 
     suspend fun setUserName(name: String?) {
+        Log.e("Repo setUserEmail",name ?: "Null Name")
         dataStore.edit { it[USER_NAME_KEY] = name ?: "Null Name" }
     }
 
@@ -43,6 +45,7 @@ class DataStoreRepo @Inject constructor(private val dataStore: DataStore<Prefere
     }
 
     suspend fun setUserEmail(email: String?) {
+        Log.e("Repo setUserEmail",email ?: "Null Email")
         dataStore.edit { it[USER_EMAIL_KEY] = email ?: "Null Email" }
     }
 

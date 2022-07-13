@@ -6,7 +6,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import com.axuca.foodorder.MainActivity
+import com.axuca.foodorder.view.MainActivity
 import com.axuca.foodorder.R
 import com.axuca.foodorder.viewmodel.IntroVM
 import com.github.appintro.AppIntro2

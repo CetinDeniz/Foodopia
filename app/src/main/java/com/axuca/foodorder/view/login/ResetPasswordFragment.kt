@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.axuca.foodorder.R
 import com.axuca.foodorder.databinding.FragmentResetPasswordBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -47,7 +48,8 @@ class ResetPasswordFragment : Fragment() {
                 } else {
                     mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            findNavController().navigate(ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment())
+//                            findNavController().navigate(ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment())
+                            findNavController().navigate(R.id.action_global_loginFragment)
                             Snackbar.make(
                                 view,
                                 "Check your email to reset your password!",

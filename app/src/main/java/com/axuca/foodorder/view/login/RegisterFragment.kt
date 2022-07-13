@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.axuca.foodorder.R
 import com.axuca.foodorder.databinding.FragmentRegisterBinding
 import com.axuca.foodorder.model.firebase.User
 import com.google.android.material.snackbar.Snackbar
@@ -42,7 +43,7 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
             loginDirectText.setOnClickListener {
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                findNavController().navigate(R.id.action_global_loginFragment)
             }
 
             registerButton.setOnClickListener {
@@ -99,7 +100,7 @@ class RegisterFragment : Fragment() {
                                 Snackbar.LENGTH_SHORT
                             ).show()
                             mAuth.signOut()
-                            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                            findNavController().navigate(R.id.action_global_loginFragment)
                         } else {
                             Snackbar.make(
                                 view,

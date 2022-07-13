@@ -93,6 +93,7 @@
             android:layout_marginBottom="@dimen/bottom_nav_height"
             android:text="@string/order"
             android:visibility="invisible"
+            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

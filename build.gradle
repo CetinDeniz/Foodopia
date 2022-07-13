@@ -6,13 +6,12 @@ buildscript {
         coil = "2.1.0"
         app_intro = "6.2.0"
         data_store = "1.0.0"
-        lottie = "5.0.3"
         splash_screen = "1.0.0-rc01"
         firebase_bom = "30.0.2"
         google_auth = "20.2.0"
         retrofit_with_moshi = "2.9.0"
         moshi_codegen = "1.13.0"
-
+        lottie = "5.2.0"
         dagger_hilt_old = "2.38.1"
         dagger_hilt = "2.40.1"
 
